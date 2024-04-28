@@ -1,0 +1,2 @@
+//use to update lambda_function.zip works only on mac
+zip lambda_function.zip lambda_function.py
