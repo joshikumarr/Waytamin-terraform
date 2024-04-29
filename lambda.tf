@@ -6,11 +6,14 @@ resource "aws_lambda_function" "analyze_lambda" {
   runtime = "python3.8"
 
 
-  filename         = "lambda_function.zip"
-  source_code_hash = filebase64sha256("lambda_function.zip")
+  filename         = "lambda_function/lambda_function.zip"
+  source_code_hash = filebase64sha256("lambda_function/lambda_function.zip")
+  timeout = 10  # Increase as needed
+
 
   # IAM role that the Lambda function will assume
   role = aws_iam_role.lambda_exec_role.arn
+  
 }
 
 resource "aws_lambda_permission" "api_gateway_lambda" {

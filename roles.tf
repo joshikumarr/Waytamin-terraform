@@ -50,7 +50,7 @@ resource "aws_iam_role" "lambda_exec_role" {
   })
 }
 
-# IAM Policy for Lambda to interact with AWS Comprehend and CloudWatch Logs
+
 resource "aws_iam_policy" "lambda_policy" {
   name   = "lambda_comprehend_policy"
   policy = jsonencode({
@@ -61,7 +61,10 @@ resource "aws_iam_policy" "lambda_policy" {
           "comprehend:DetectEntities",
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+          "ec2:CreateNetworkInterface",       
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DeleteNetworkInterface",
         ],
         Resource = "*",
         Effect   = "Allow"
@@ -70,13 +73,14 @@ resource "aws_iam_policy" "lambda_policy" {
   })
 }
 
-# Attach the policy to the role
 resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
   role       = aws_iam_role.lambda_exec_role.name
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
 #CloudWatch Role and Policy
+
+
 resource "aws_iam_role" "api_gateway_cloudwatch_role" {
   name = "api_gateway_cloudwatch_role"
 

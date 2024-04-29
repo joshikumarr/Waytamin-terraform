@@ -1,2 +1,16 @@
 //use to update lambda_function.zip works only on mac
 zip lambda_function.zip lambda_function.py
+
+
+
+// Enhance existing lambda 
+to gather the locations from the array, 
+aws comprehend must be enhanced to intent recognize as well
+and intent classification by recognized entities 
+
+get wait times - call TSA Wait times with location entity. 
+json dump to store the response. 
+
+
+-> NLP Lambda -> AppSync -> Lambda Function 
+[That makes invidiaul calls to TSA whatever, here we store request in cache ] 

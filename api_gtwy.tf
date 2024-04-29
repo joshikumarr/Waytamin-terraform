@@ -25,17 +25,10 @@ resource "aws_api_gateway_integration" "analyze_integration" {
   resource_id = aws_api_gateway_resource.analyze_resource.id
   http_method = aws_api_gateway_method.analyze_method.http_method
 
-  type                      = "AWS"
+  type                      = "AWS_PROXY"
   integration_http_method   = "POST"
   uri                       = aws_lambda_function.analyze_lambda.invoke_arn
 
-  request_templates = {
-    "application/json" = <<EOF
-  {
-  "query" : $input.json('$.query')
-  }
-  EOF
-  }
 }
 
 
